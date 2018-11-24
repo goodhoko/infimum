@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title><%= htmlUnescape((page.title ? page.title + ' • ' : '') + config.title.replace('&nbsp;', ' ')) %></title>
+	<link rel="shortcut icon" type="image/png" href="<%- url_for('data/favicon.png') -%>"/>
+
+	<%- css('assets/css/fonts.css') %>
+	<%- css('assets/css/style.css') %>
+	<%- css('assets/css/lightgallery.min.css') %>
+	<%- css('assets/css/normalize.css') %>
+
+	<%- open_graph({
+		image: page.featured || url_for(headerImgs('data/headers')[0]),
+		title: htmlUnescape((page.title ? page.title + ' • ' : '') + config.title),
+		description: is_home() ? config.description : null,
+		site_name: htmlUnescape(config.title)
+	}) %>
+</head>
+<body>
+	<%- body %>
+
+	<%- js('assets/js/jquery.min.js') %>
+	<%- js('assets/js/lightgallery.min.js') %>
+	<%- js('assets/js/scripts.js') %>
+</body>
+</html>
